@@ -24,6 +24,25 @@ def submit_login(request):
     return redirect('/')
 
 @login_required(login_url='/login/')
+def submit_evento(request):
+    if request.POST:
+        titulo = request.POST.get('titulo')
+        descricao = request.POST.get('descricao')
+        data_evento = request.POST.get('data_evento')
+        local = request.POST.get('local')
+        usuario = request.user
+        Evento.objects.create(titulo=titulo,
+                              descricao=descricao,
+                              data_evento=data_evento,
+                              local=local,
+                              usuario=usuario)
+    return redirect('/')
+
+@login_required(login_url='/login/')
+def eventos(request):
+    return render(request, 'evento.html')
+
+@login_required(login_url='/login/')
 def event(request):
     usuario = request.user
     tit = Evento.objects.filter(usuario=usuario)
