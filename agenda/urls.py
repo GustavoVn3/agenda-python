@@ -23,6 +23,7 @@ urlpatterns = [
     path('eventos/', views.event),
     path('evento/', views.eventos),
     path('evento/submit', views.submit_evento),
+    path('evento/delete/<int:id_evento>', views.delete_eventos),
     path('', RedirectView.as_view(url='/eventos/')),
     path('login/', views.login_user),
     path('logout/', views.logout_user),
